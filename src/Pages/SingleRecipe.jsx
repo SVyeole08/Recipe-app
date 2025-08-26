@@ -1,12 +1,32 @@
 import { useContext } from "react";
 import { recipecontext } from "../Context/Recipecontext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const SingleRecipe = () => {
   const { data, setData } = useContext(recipecontext);
-  const { register, handleSubmit } = useForm();
+  const navigator = useNavigate();
+  const params = useParams();
+  const recipe = data.find((recipe) => params.id == recipe.id);
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      title: recipe.title,
+      chef: recipe.chef,
+      img: recipe.img,
+      desc: recipe.desc,
+      ingr: recipe.ingr,
+      inst: recipe.inst,
+      category: recipe.category,
+    },
+  });
+
+  const DeleteHandler = () => {
+    const filerdata = data.filter((recipe) => params.id != recipe.id);
+    setData(filerdata);
+    toast.success("Recipe deleted successfully");
+    navigator("/recipes");
+  };
 
   const SubmitHandler = (recipe) => {
     const index = data.findIndex((recipe) => params.id == recipe.id);
@@ -15,19 +35,51 @@ const SingleRecipe = () => {
     setData(copydata);
     toast.success("Recipe updated successfully");
   };
-  const params = useParams();
-  const recipe = data.find((recipe) => params.id == recipe.id);
+
   return recipe ? (
     <div className="flex">
-      <div className="left w-1/2 p-2">
-        <h1 className="text-4xl font-black">{recipe.title}</h1>
-        <img className="h-[30vh]" src={recipe.img} alt="" />
+      <div className="left w-1/2 p-2 border-r">
+        <h1 className="text-5xl font-black font-[Cambria] mb-5">
+          {recipe.title}
+        </h1>
+        <img
+          className="mb-3 h-[30vh] rounded-md border-b border-l-2"
+          src={recipe.img}
+          alt=""
+        />
+
+        <h2 className="mb-2 text-sm text-red-400 font-semibold">
+          {recipe.chef}
+        </h2>
+        <p className="mb-2 text-sm w-[17vw] font-thin">
+          <span className="font-bold">
+            <li type="circle">Description :- </li>
+          </span>
+          {recipe.desc}
+        </p>
+        <p className="mb-2 text-sm w-[17vw] font-thin">
+          <span className="font-bold">
+            <li type="circle">Instruction :- </li>
+          </span>
+          {recipe.inst}
+        </p>
+        <p className="mb-2 text-sm w-[17vw] font-thin">
+          <span className="font-bold">
+            <li type="circle">Ingredients :- </li>
+          </span>
+          {recipe.ingr}
+        </p>
+        <p className="mb-2 text-sm w-[17vw] font-thin">
+          <span className="font-bold">
+            <li type="circle">Category :- </li>
+          </span>
+          {recipe.category}
+        </p>
       </div>
 
-      <form className="w-1/2 p-2" onSubmit={handleSubmit(SubmitHandler)}>
+      <form className="w-1/2 p-2 ml-11" onSubmit={handleSubmit(SubmitHandler)}>
         <input
           className="mb-5 block border-b outline-0 p-2"
-          value={recipe.img}
           {...register("img")}
           type="url"
           placeholder="Enter image URL"
@@ -35,7 +87,6 @@ const SingleRecipe = () => {
 
         <input
           className="mb-5 block border-b outline-0 p-2"
-          value={recipe.title}
           {...register("title")}
           type="text"
           placeholder="Recipe title"
@@ -43,7 +94,6 @@ const SingleRecipe = () => {
 
         <input
           className="mb-5 block border-b outline-0 p-2"
-          value={recipe.chef}
           {...register("chef")}
           type="text"
           placeholder="Chef name"
@@ -51,42 +101,41 @@ const SingleRecipe = () => {
 
         <textarea
           placeholder="Enter short description"
-          value={recipe.desc}
           className="mb-5 block border-b outline-0 p-2"
           {...register("desc")}
         ></textarea>
 
         <textarea
           placeholder="Write ingredients separated by commas"
-          value={recipe.ingr}
           className="mb-5 block border-b outline-0 p-2"
           {...register("ingr")}
         ></textarea>
 
         <textarea
           placeholder="Write instructions separated by comma"
-          value={recipe.inst}
           className="mb-5 block border-b outline-0 p-2"
           {...register("inst")}
         ></textarea>
 
         <select
           className="block bg-gray-900 border-b outline-0 p-2"
-          value={recipe.category}
           {...register("category")}
         >
           <option value="Starter">Starter</option>
-          <option value="breakfast">Breakfast</option>
-          <option value="lunch">Lunch</option>
-          <option value="dinner">Dinner</option>
-          <option value="brunch">Brunch</option>
-          <option value="supper">Supper</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Brunch">Brunch</option>
+          <option value="Supper">Supper</option>
         </select>
 
-        <button     className="mt-5 block rounded bg-blue-600 px-4 py-2">
+        <button className="mt-5 block rounded bg-blue-600 px-4 py-2">
           Update Recipe
         </button>
-        <button className="mt-5 block rounded bg-red-600 px-4 py-2">
+        <button
+          onClick={DeleteHandler}
+          className="mt-5 block rounded bg-red-600 px-4 py-2"
+        >
           Delete Recipe
         </button>
       </form>

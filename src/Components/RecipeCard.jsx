@@ -1,27 +1,21 @@
 import { Link } from "react-router-dom";
 
 const RecipeCard = (props) => {
-  const { id, title, img, chef, desc, ingr, inst, category } = props.recipe;
+  const { id, title, img, chef, desc } = props.recipe;
   return (
     <Link
       to={`/recipes/detail/${id}`}
-      className="hover:scale-105 duration-150 transition-all-ease block mr-5 mb-3 w-[23vw] rounded overflow-hidden"
+      className="hover:scale-105 bg-teal-700 rounded-md overflow-hidden z-999 duration-150 transition-all-ease block mr-5 mb-3 w-[21vw] rounded overflow-hidden"
     >
-      <img className="object-cover w-[30vw] h-[30vh]" src={img} alt="" />
-      <h1 className="font-black tracking-[0.04em] mt-2">{title}</h1>
-      <p className="font-thin text-sm">
-        {desc.slice(0, 100)}...
-        <small className="text-blue-400">more</small>
-      </p>
-      {/* <p className="font-thin text-sm mt-2 w-[20vw] ">
-        <span className="font-semibold tracking-wide">Ingredients :- </span>
-        {ingr}
-      </p>
-      <p className="font-thin text-sm mt-2 w-[20vw] ">
-        <span className="font-semibold tracking-wide">Instructions :- </span>
-        {inst}
-      </p> */}
-      <small className="mt-2 text-orange-500 font-thin">{chef}</small>
+      <img className="object-cover w-[30vw] h-[30vh] rounded-lg" src={img} />
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="font-black tracking-[0.04em] mt-2">{title}</h1>
+        <p className="font-thin text-sm">
+          {desc.slice(0, 100)}...
+          <small className="text-blue-400">more</small>
+        </p>
+        <small className="mt-2 text-rose-400 mb-2 font-semibold">{chef}</small>
+      </div>
     </Link>
   );
 };

@@ -42,7 +42,7 @@ const Create = () => {
         placeholder="Recipe title"
       />
       <small className="text-red-400">{error?.title?.message}</small>
-      
+
       <input
         className="mb-5 block border-b outline-0 p-2"
         {...register("chef", { required: "Chef name is required" })}
@@ -77,11 +77,11 @@ const Create = () => {
         {...register("category")}
       >
         <option value="Starter">Starter</option>
-        <option value="breakfast">Breakfast</option>
-        <option value="lunch">Lunch</option>
-        <option value="dinner">Dinner</option>
-        <option value="brunch">Brunch</option>
-        <option value="supper">Supper</option>
+        <option value="Breakfast">Breakfast</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Dinner">Dinner</option>
+        <option value="Brunch">Brunch</option>
+        <option value="Supper">Supper</option>
       </select>
 
       <button className="mt-5 block rounded bg-gray-900 px-4 py-2">
