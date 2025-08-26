@@ -8,7 +8,7 @@ const RecipeCard = (props) => {
       className="hover:scale-105 bg-teal-700 rounded-md overflow-hidden z-999 duration-150 transition-all-ease block mr-5 mb-3 w-[21vw] rounded overflow-hidden"
     >
       <img className="object-cover w-[30vw] h-[30vh] rounded-lg" src={img} />
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col px-2 items-center justify-center">
         <h1 className="font-black tracking-[0.04em] mt-2">{title}</h1>
         <p className="font-thin text-sm">
           {desc.slice(0, 100)}...
