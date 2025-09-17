@@ -28,7 +28,7 @@ const Create = () => {
       onSubmit={handleSubmit(SubmitHandler)}
     >
       <input
-        className="mb-5 block border-b outline-0 p-2"
+        className="mb-5 block rounded border-b bg-teal-700  border-l outline-0 p-2"
         {...register("img", { required: "Providing the image is mandatory" })}
         type="url"
         placeholder="Enter image URL"
@@ -36,7 +36,7 @@ const Create = () => {
       <small className="text-red-400">{error?.img?.message}</small>
 
       <input
-        className="mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
         {...register("title", { required: "Title is required" })}
         type="text"
         placeholder="Recipe title"
@@ -44,7 +44,7 @@ const Create = () => {
       <small className="text-red-400">{error?.title?.message}</small>
 
       <input
-        className="mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
         {...register("chef", { required: "Chef name is required" })}
         type="text"
         placeholder="Chef name"
@@ -53,27 +53,27 @@ const Create = () => {
 
       <textarea
         placeholder="Enter short description"
-        className="mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
         {...register("desc", { required: "Description is required" })}
       ></textarea>
       <small className="text-red-400">{error?.desc?.message}</small>
 
       <textarea
         placeholder="Write ingredients separated by commas"
-        className="mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
         {...register("ingr", { required: "Ingredients are required" })}
       ></textarea>
       <small className="text-red-400">{error?.ingr?.message}</small>
 
       <textarea
         placeholder="Write instructions separated by comma"
-        className="mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
         {...register("inst", { required: "Instructions are required" })}
       ></textarea>
       <small className="text-red-400">{error?.inst?.message}</small>
 
       <select
-        className="block bg-gray-900 border-b outline-0 p-2"
+        className="block bg-gray-800 border-b outline-0 p-2"
         {...register("category")}
       >
         <option value="Starter">Starter</option>
@@ -84,7 +84,7 @@ const Create = () => {
         <option value="Supper">Supper</option>
       </select>
 
-      <button className="mt-5 block rounded bg-gray-900 px-4 py-2">
+      <button className="mt-5 block rounded bg-[royalblue] px-4 py-2">
         Save Recipe
       </button>
     </form>
