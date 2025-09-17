@@ -5,6 +5,7 @@ import About from "../Pages/About";
 import Create from "../Pages/Create";
 import SingleRecipe from "../Pages/SingleRecipe";
 import Pageerror from "../Pages/Pageerror";
+import Fav from "../Pages/Fav";
 
 const Mainroutes = () => {
   return (
@@ -15,6 +16,7 @@ const Mainroutes = () => {
         <Route path="/recipes/detail/:id" element={<SingleRecipe />} />
         <Route path="/about" element={<About />} />
         <Route path="/create" element={<Create />} />
+        <Route path="/fav" element={<Fav />} />
         <Route path="*" element={<Pageerror />} />
       </Routes>
     </div>
