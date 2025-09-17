@@ -11,19 +11,20 @@ const SingleRecipe = () => {
   const recipe = data.find((recipe) => params.id == recipe.id);
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      title: recipe.title,
-      chef: recipe.chef,
-      img: recipe.img,
-      desc: recipe.desc,
-      ingr: recipe.ingr,
-      inst: recipe.inst,
-      category: recipe.category,
+      title: recipe?.title,
+      chef: recipe?.chef,
+      img: recipe?.img,
+      desc: recipe?.desc,
+      ingr: recipe?.ingr,
+      inst: recipe?.inst,
+      category: recipe?.category,
     },
   });
 
   const DeleteHandler = () => {
     const filerdata = data.filter((recipe) => params.id != recipe.id);
     setData(filerdata);
+    localStorage.setItem("recipe", JSON.stringify(filerdata));
     toast.success("Recipe deleted successfully");
     navigator("/recipes");
   };
@@ -33,6 +34,7 @@ const SingleRecipe = () => {
     const copydata = [...data];
     copydata[index] = { ...copydata[index], ...recipe };
     setData(copydata);
+    localStorage.setItem("recipe", JSON.stringify(copydata));
     toast.success("Recipe updated successfully");
   };
 

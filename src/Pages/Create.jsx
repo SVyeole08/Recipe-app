@@ -36,7 +36,7 @@ const Create = () => {
       <small className="text-red-400">{error?.img?.message}</small>
 
       <input
-        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block outline-0 p-2"
         {...register("title", { required: "Title is required" })}
         type="text"
         placeholder="Recipe title"
@@ -44,7 +44,7 @@ const Create = () => {
       <small className="text-red-400">{error?.title?.message}</small>
 
       <input
-        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block outline-0 p-2"
         {...register("chef", { required: "Chef name is required" })}
         type="text"
         placeholder="Chef name"
@@ -53,21 +53,21 @@ const Create = () => {
 
       <textarea
         placeholder="Enter short description"
-        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block outline-0 p-2"
         {...register("desc", { required: "Description is required" })}
       ></textarea>
       <small className="text-red-400">{error?.desc?.message}</small>
 
       <textarea
         placeholder="Write ingredients separated by commas"
-        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block outline-0 p-2"
         {...register("ingr", { required: "Ingredients are required" })}
       ></textarea>
       <small className="text-red-400">{error?.ingr?.message}</small>
 
       <textarea
         placeholder="Write instructions separated by comma"
-        className="rounded border-b bg-teal-700  border-l mb-5 block border-b outline-0 p-2"
+        className="rounded border-b bg-teal-700  border-l mb-5 block outline-0 p-2"
         {...register("inst", { required: "Instructions are required" })}
       ></textarea>
       <small className="text-red-400">{error?.inst?.message}</small>
@@ -84,7 +84,7 @@ const Create = () => {
         <option value="Supper">Supper</option>
       </select>
 
-      <button className="mt-5 block rounded bg-[royalblue] px-4 py-2">
+      <button className="mt-5 block rounded bg-teal-600 shadow-xl px-4 py-2">
         Save Recipe
       </button>
     </form>
