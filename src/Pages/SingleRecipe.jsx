@@ -20,6 +20,7 @@ const SingleRecipe = () => {
       category: recipe?.category,
     },
   });
+  
   const DeleteHandler = () => {
     const filerdata = data.filter((recipe) => params.id != recipe.id);
     setData(filerdata);

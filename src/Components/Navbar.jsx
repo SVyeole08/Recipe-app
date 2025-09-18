@@ -12,25 +12,25 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         className={(e) => (e.isActive ? "text-red-300 font-semibold" : "")}
-        to="/recipes"
+        to="/Recipes"
       >
         Recipes
       </NavLink>
       <NavLink
         className={(e) => (e.isActive ? "text-red-300 font-semibold" : "")}
-        to="/about"
+        to="/About"
       >
         About
       </NavLink>
       <NavLink
         className={(e) => (e.isActive ? "text-red-300 font-semibold" : "")}
-        to="/create"
+        to="/Create"
       >
         Create Recipe
       </NavLink>
       <NavLink
         className={(e) => (e.isActive ? "text-red-300 font-semibold" : "")}
-        to="/fav"
+        to="/Fav"
       >
         Favourites
       </NavLink>
