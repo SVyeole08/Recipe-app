@@ -20,11 +20,17 @@ const SingleRecipe = () => {
       category: recipe?.category,
     },
   });
-  
+
   const DeleteHandler = () => {
     const filerdata = data.filter((recipe) => params.id != recipe.id);
     setData(filerdata);
     localStorage.setItem("recipe", JSON.stringify(filerdata));
+
+    const currentFav = JSON.parse(localStorage.getItem("fav") || "[]");
+    const updatedFav = currentFav.filter((f) => String(f.id) !== String(params.id));
+    localStorage.setItem("fav", JSON.stringify(updatedFav));
+    setFavourite(updatedFav);
+
     toast.success("Recipe deleted successfully");
     navigator("/recipes");
   };
