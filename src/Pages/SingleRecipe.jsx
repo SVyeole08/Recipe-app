@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { recipecontext } from "../Context/Recipecontext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -20,7 +20,6 @@ const SingleRecipe = () => {
       category: recipe?.category,
     },
   });
-
   const DeleteHandler = () => {
     const filerdata = data.filter((recipe) => params.id != recipe.id);
     setData(filerdata);
@@ -28,7 +27,6 @@ const SingleRecipe = () => {
     toast.success("Recipe deleted successfully");
     navigator("/recipes");
   };
-
   const SubmitHandler = (recipe) => {
     const index = data.findIndex((recipe) => params.id == recipe.id);
     const copydata = [...data];
@@ -38,9 +36,36 @@ const SingleRecipe = () => {
     toast.success("Recipe updated successfully");
   };
 
+  const [favourite, setFavourite] = useState(
+    JSON.parse(localStorage.getItem("fav")) || []
+  );
+  useEffect(() => {}, [favourite]);
+  const favHandler = () => {
+    let copyFavourite = [...favourite];
+    copyFavourite.push(recipe);
+    setFavourite(copyFavourite);
+    localStorage.setItem("fav", JSON.stringify(copyFavourite));
+  };
+  const UnfavHandler = () => {
+    const filterFav = favourite.filter((f) => f.id != recipe?.id);
+    setFavourite(filterFav);
+    localStorage.setItem("fav", JSON.stringify(filterFav));
+  };
+
   return recipe ? (
     <div className="flex">
-      <div className="left w-1/2 p-2 border-r">
+      <div className="left relative w-1/2 p-2 border-r">
+        {favourite.find((f) => f.id == recipe?.id) ? (
+          <i
+            onClick={UnfavHandler}
+            className="absolute text-3xl text-red-400 left-[68%] top-[12%] ri-heart-fill"
+          ></i>
+        ) : (
+          <i
+            onClick={favHandler}
+            className="absolute text-3xl text-red-400 left-[68%] top-[12%] ri-heart-line"
+          ></i>
+        )}
         <h1 className="text-5xl font-black font-[Cambria] mb-5">
           {recipe.title}
         </h1>
