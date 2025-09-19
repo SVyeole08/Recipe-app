@@ -17,13 +17,7 @@ const Home = () => {
 
   return (
     <>
-      <div>Home</div>
-      <button
-        onClick={getproduct}
-        className="mt-4 block rounded bg-[cornflowerblue] hover:bg-blue-700 px-4 py-2"
-      >
-        Get Products
-      </button>
+      <div>Content is coming soon!!</div>
     </>
   );
 };
